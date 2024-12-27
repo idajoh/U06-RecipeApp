@@ -1,1 +1,259 @@
-/* You can add global styles to this file, and also import other style files */
+/* General Page Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f8f9fa;
+    margin: 0;
+    padding: 0;
+    color: #333;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Centered Search Box */
+.search-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 30px 0;
+    gap: 10px;
+}
+
+.search-container input {
+    padding: 10px;
+    width: 300px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.search-container button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.search-container button:hover {
+    background-color: #0056b3;
+    transform: scale(1.02);
+}
+
+/* Centering the Result Section */
+#result {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    min-height: 100vh; 
+    align-items: center; 
+    position: relative; 
+}
+
+/* Centered Recipe Details */
+.recipe-details {
+    max-width: 600px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    position: relative;
+    overflow: hidden; 
+    text-overflow: ellipsis;
+    margin-top: 20px;
+}
+
+
+#instructions {
+    white-space: normal; 
+    word-wrap: break-word; 
+    overflow: hidden; 
+    text-overflow: ellipsis; 
+    line-height: 1.5; 
+    max-height: 300px;
+    padding: 10px; 
+    font-size: 14px;
+    background-color: #f9f9f9; 
+    border-radius: 5px; 
+    border: 1px solid #ccc; 
+}
+
+.meal-details img, .recipe-details img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    margin-bottom: 15px;
+}
+
+.meal-details h2, .recipe-details h2 {
+    font-size: 1.5rem;
+    color: #2c3e50;
+}
+
+.meal-details h4, .recipe-details h4 {
+    font-size: 1.2rem;
+    color: #555;
+    text-align: center;
+}
+
+.meal-details {
+    max-width: 600px;
+    border: 2px solid #ccc; 
+    border-radius: 10px; 
+    background-color: #fff; 
+    padding: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); 
+    position: relative;
+    overflow: hidden; 
+    text-overflow: ellipsis;
+    margin-top: 20px;
+}
+
+#ingredient-con {
+    margin-top: 20px;
+    max-height: 300px; 
+    overflow-x: hidden; 
+    padding: 10px; 
+    border: 1px solid #ccc; 
+    background-color: #f9f9f9; 
+    border-radius: 5px; 
+}
+
+#ingredient-con ul {
+    list-style-type: disc;
+    margin: 10px 0;
+    padding-left: 20px;
+}
+
+#ingredient-con li {
+    list-style: none;
+    border-style: solid;
+    padding: 1em;
+    margin: 1em;
+    border-radius: 1em;
+    border-color: #555;
+}
+
+/* Recipe Instructions Visibility */
+#recipe {
+    display: none; /* Initially hidden */
+    margin-top: 20px;
+    background-color: #f9f9f9;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    overflow: hidden;
+}
+
+#recipe pre {
+    white-space: pre-wrap;
+    margin: 0;
+    padding: 10px;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+#hide-recipe {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #ff4d4d;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    width: 25px;
+    height: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#hide-recipe:hover {
+    background-color: #d63434;
+}
+
+#show-recipe {
+    margin-top: 10px;
+    width: 100%;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    padding: 10px;
+    text-align: center;
+    transition: background-color 0.3s ease;
+}
+
+#show-recipe:hover {
+    background-color: #0056b3;
+}
+
+/* Suggested Recipes Section */
+.suggested-recipes {
+    margin-top: 30px;
+    text-align: center;
+}
+
+.suggested-recipes h2 {
+    margin-bottom: 15px;
+    font-size: 1.5rem;
+    color: #007bff;
+}
+
+.recipes-container {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.recipe-card {
+    border: 1px solid #ccc;
+    padding: 15px;
+    border-radius: 10px;
+    text-align: center;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background-color: white;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.recipe-card:hover {
+    transform: scale(1.08);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.recipe-card img {
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-bottom: 10px;
+}
+
+.recipe-card h3 {
+    margin: 10px 0;
+    font-size: 1rem;
+    color: #2c3e50;
+}
+
+/* Utility Classes */
+.text-center {
+    text-align: center;
+}
+
+.mt-20 {
+    margin-top: 20px;
+}
+
+.mb-20 {
+    margin-bottom: 20px;
+}

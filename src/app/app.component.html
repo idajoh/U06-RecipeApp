@@ -1,9 +1,24 @@
 <div class="container">
   <div class="search-container">
-    <input type="text"placeholder="Type A Dish Name Here.." [value]="userInp"
-      (input)="onInputChange($event)" />
+    <input type="text" placeholder="Type A Dish Name Here.." [value]="userInp" (input)="onInputChange($event)" />
     <button (click)="fetchMeal()">Search</button>
   </div>
+
+  <!-- Suggested Recipes Section -->
+  <div class="suggested-recipes" *ngIf="suggestedRecipes.length > 0">
+    <h2>Suggested Recipes</h2>
+    <div class="recipes-container">
+      <div
+        *ngFor="let recipe of suggestedRecipes"
+        class="recipe-card"
+        (click)="selectSuggestedRecipe(recipe)"
+      >
+        <img [src]="recipe.strMealThumb" alt="{{ recipe.strMeal }}" />
+        <h3>{{ recipe.strMeal }}</h3>
+      </div>
+    </div>
+  </div>
+
   <div id="result">
     <div *ngIf="result?.error" class="error">
       <h3>{{ result.error }}</h3>
