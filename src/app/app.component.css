@@ -235,8 +235,9 @@
 .filter-buttons {
     display: flex;
     justify-content: center;
-    gap: 20px;
-    margin-bottom: 30px;
+    gap: 10px;
+    margin-bottom: 20px 0;
+    padding-bottom: 1em;
   }
   
   .filter-buttons button {

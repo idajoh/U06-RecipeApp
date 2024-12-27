@@ -6,16 +6,15 @@
 
   <!-- Filter Recipe -->
   <div class="filter-buttons">
-    <button (click)="filterFoods('meat')">Meat</button>
-    <button (click)="filterFoods('vegan')">Vegan</button>
-    <button (click)="filterFoods('vegetarian')">Vegetarian</button>
+    <button (click)="filterFoods('Beef')">Meat</button>
+    <button (click)="filterFoods('Vegan')">Vegan</button>
+    <button (click)="filterFoods('Vegetarian')">Vegetarian</button>
   </div>
   
-  <div class="food-list">
-    <div *ngFor="let food of filteredFoods" class="recipe-card">
-      <img [src]="food.image" alt="Food Image">
-      <h3>{{ food.name }}</h3>
-      <p>{{ food.description }}</p>
+  <div class="filtered-meals">
+    <div *ngFor="let meal of filteredFoods" class="recipe-card">
+      <img [src]="meal.strMealThumb" alt="{{ meal.strMeal }}" />
+      <h3>{{ meal.strMeal }}</h3>
     </div>
   </div>
 

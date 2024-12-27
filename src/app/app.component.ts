@@ -11,17 +11,17 @@ import { FormsModule } from '@angular/forms';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
 })
-
-
 export class AppComponent {
-  userInp: string = ''; 
+  userInp: string = '';
   result: any = null;
   url: string = 'https://www.themealdb.com/api/json/v1/1/search.php?s=';
-  randomRecipeUrl: string = 'https://www.themealdb.com/api/json/v1/1/random.php'; 
+  randomRecipeUrl: string = 'https://www.themealdb.com/api/json/v1/1/random.php';
+  filterUrl: string = 'https://www.themealdb.com/api/json/v1/1/filter.php?c=';
   ingredients: string[] = [];
   suggestedRecipes: any[] = [];
   selectedRecipe: any = null;
-  selectedIngredients: string[] = [];
+  selectedIngredients: string[] = []; // Added this property
+  filteredFoods: any[] = [];
 
   constructor(private http: HttpClient) {}
 
@@ -65,29 +65,21 @@ export class AppComponent {
     );
   }
 
-  foods = [
-    { name: 'Chicken Salad', category: 'meat', image: 'chicken.jpg', description: 'A healthy chicken salad.' },
-    { name: 'Vegan Burger', category: 'vegan', image: 'vegan-burger.jpg', description: 'A delicious vegan burger.' },
-    { name: 'Vegetarian Pizza', category: 'vegetarian', image: 'veg-pizza.jpg', description: 'A tasty vegetarian pizza.' },
-    { name: 'Beef Stew', category: 'meat', image: 'beef-stew.jpg', description: 'Hearty beef stew.' },
-    { name: 'Vegan Stir Fry', category: 'vegan', image: 'vegan-stir-fry.jpg', description: 'Vibrant vegan stir fry.' },
-    { name: 'Vegetarian Pasta', category: 'vegetarian', image: 'veg-pasta.jpg', description: 'Vegetarian pasta with pesto.' },
-  ];
-
-  // Filtered food list
-  filteredFoods = [...this.foods]; // Initially, show all foods
-
-  // Filter foods by category
-  filterFoods(category: string) {
-    if (category === 'meat') {
-      this.filteredFoods = this.foods.filter(food => food.category === 'meat');
-    } else if (category === 'vegan') {
-      this.filteredFoods = this.foods.filter(food => food.category === 'vegan');
-    } else if (category === 'vegetarian') {
-      this.filteredFoods = this.foods.filter(food => food.category === 'vegetarian');
-    } else {
-      this.filteredFoods = [...this.foods]; // Show all if no category selected
-    }
+  // Fetch meals by category directly from the API
+  filterFoods(category: string): void {
+    this.http.get<{ meals: any[] }>(`${this.filterUrl}${category}`).subscribe(
+      (data) => {
+        if (data.meals) {
+          this.filteredFoods = data.meals;
+        } else {
+          this.filteredFoods = [];
+        }
+      },
+      (error) => {
+        console.error(`Error fetching ${category} meals:`, error);
+        this.filteredFoods = [];
+      }
+    );
   }
 
   // Fetch suggested recipes
@@ -95,7 +87,7 @@ export class AppComponent {
     this.http.get<{ meals: any[] }>(`${this.url}`).subscribe(
       (data) => {
         if (data.meals) {
-          this.suggestedRecipes = data.meals.slice(0, 12); 
+          this.suggestedRecipes = data.meals.slice(0, 12);
         }
       },
       (error) => {
@@ -117,12 +109,11 @@ export class AppComponent {
       }
     );
   }
-  
 
   // Handle selection of suggested recipe
   selectSuggestedRecipe(recipe: any): void {
     this.selectedRecipe = recipe;
-    this.selectedIngredients = [];
+    this.selectedIngredients = []; // Use the declared property
 
     let count = 1;
     for (let key in recipe) {
@@ -143,12 +134,13 @@ export class AppComponent {
   toggleRecipeVisibility(): void {
     const recipeElement = document.getElementById('recipe');
     if (recipeElement) {
-      recipeElement.style.display = recipeElement.style.display === 'none' ? 'block' : 'none';
+      recipeElement.style.display =
+        recipeElement.style.display === 'none' ? 'block' : 'none';
     }
   }
 
   ngOnInit(): void {
     this.fetchSuggestedRecipes();
-    this.fetchRandomRecipes();  
+    this.fetchRandomRecipes();
   }
 }
