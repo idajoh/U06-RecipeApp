@@ -1,5 +1,3 @@
-
-
 .container {
     max-width: 1200px;
     margin: 0 auto;
@@ -61,6 +59,8 @@
     text-overflow: ellipsis;
     margin-top: 20px;
 }
+
+/* Suggested Recipes Section */
 .suggested-recipes {
     margin-top: 30px;
     text-align: center;
@@ -72,14 +72,19 @@
     color: #007bff;
 }
 
-.recipes-container {
+.recipes-container, .food-list {
     display: flex;
     gap: 20px;
     flex-wrap: wrap;
     justify-content: center;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
 }
 
-.recipe-card {
+
+
+.recipe-card, .food-card {
     border: 1px solid #ccc;
     padding: 15px;
     border-radius: 10px;
@@ -88,14 +93,15 @@
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     background-color: white;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    width: 300px;
 }
 
-.recipe-card:hover {
+.recipe-card:hover, .food-card:hover {
     transform: scale(1.08);
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
-.recipe-card img {
+.recipe-card img, .food-card img {
     width: 120px;
     height: 120px;
     object-fit: cover;
@@ -103,13 +109,13 @@
     margin-bottom: 10px;
 }
 
-.recipe-card h3 {
+.recipe-card h3, .food-card h3 {
     margin: 10px 0;
     font-size: 1rem;
     color: #2c3e50;
 }
 
-/* Ensuring #instructions adjusts dynamically to content */
+
 #instructions {
     white-space: pre-line;  
     word-wrap: break-word;  
@@ -124,7 +130,6 @@
     overflow: visible; 
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
-
 
 .meal-details img, .recipe-details img {
     width: 100%;
@@ -196,7 +201,6 @@
     border-radius: 50%;
     cursor: pointer;
     width: 25px;
-    
     display: flex;
     justify-content: center;
     align-items: center;
@@ -219,28 +223,16 @@
     background-color: #0056b3;
 }
 
-/* Suggested Recipes Section */
-.suggested-recipes {
-    margin-top: 30px;
-    text-align: center;
-}
-
-.suggested-recipes h2 {
-    margin-bottom: 15px;
-    font-size: 1.5rem;
-    color: #007bff;
-}
-
-/* ------ Filter Button ------- */
+/* Filter Buttons */
 .filter-buttons {
     display: flex;
     justify-content: center;
     gap: 10px;
-    margin-bottom: 20px 0;
+    margin-bottom: 20px;
     padding-bottom: 1em;
-  }
-  
-  .filter-buttons button {
+}
+
+.filter-buttons button {
     padding: 10px 20px;
     background-color: #007bff;
     color: white;
@@ -248,47 +240,8 @@
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s ease;
-  }
-  
-  .filter-buttons button:hover {
-    background-color: #0056b3;
-  }
-  
-  .food-list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    justify-content: center;
-  }
-  
-  .recipe-card {
-    border: 1px solid #ccc;
-    padding: 15px;
-    border-radius: 10px;
-    text-align: center;
-    cursor: pointer;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    background-color: white;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  }
-  
-  .recipe-card:hover {
-    transform: scale(1.08);
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-  }
-  
-  .recipe-card img {
-    width: 120px;
-    height: 120px;
-    object-fit: cover;
-    border-radius: 50%;
-    margin-bottom: 10px;
-  }
-  
-  .recipe-card h3 {
-    margin: 10px 0;
-    font-size: 1rem;
-    color: #2c3e50;
-  }
-  
+}
 
+.filter-buttons button:hover {
+    background-color: #0056b3;
+}
