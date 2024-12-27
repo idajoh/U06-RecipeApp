@@ -20,7 +20,7 @@ export class AppComponent {
   ingredients: string[] = [];
   suggestedRecipes: any[] = [];
   selectedRecipe: any = null;
-  selectedIngredients: string[] = []; // Added this property
+  selectedIngredients: string[] = []; 
   filteredFoods: any[] = [];
 
   constructor(private http: HttpClient) {}
@@ -113,7 +113,7 @@ export class AppComponent {
   // Handle selection of suggested recipe
   selectSuggestedRecipe(recipe: any): void {
     this.selectedRecipe = recipe;
-    this.selectedIngredients = []; // Use the declared property
+    this.selectedIngredients = []; 
 
     let count = 1;
     for (let key in recipe) {

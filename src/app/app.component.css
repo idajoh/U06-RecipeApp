@@ -111,8 +111,8 @@
 
 /* Ensuring #instructions adjusts dynamically to content */
 #instructions {
-    white-space: pre-line;  /* Preserve line breaks in the text */
-    word-wrap: break-word;  /* Ensure long words don't overflow */
+    white-space: pre-line;  
+    word-wrap: break-word;  
     padding: 10px;
     background-color: #f9f9f9;
     border-radius: 5px;
@@ -120,8 +120,8 @@
     line-height: 1.5;
     font-size: 14px;
     width: 100%;
-    max-height: none;  /* Allow for dynamic height based on content */
-    overflow: visible; /* Make sure the content isn't cut off */
+    max-height: none;  
+    overflow: visible; 
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
