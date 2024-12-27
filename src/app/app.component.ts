@@ -11,6 +11,8 @@ import { FormsModule } from '@angular/forms';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
 })
+
+
 export class AppComponent {
   userInp: string = ''; 
   result: any = null;
@@ -61,6 +63,31 @@ export class AppComponent {
         this.result = { error: 'Error fetching the meal data.' };
       }
     );
+  }
+
+  foods = [
+    { name: 'Chicken Salad', category: 'meat', image: 'chicken.jpg', description: 'A healthy chicken salad.' },
+    { name: 'Vegan Burger', category: 'vegan', image: 'vegan-burger.jpg', description: 'A delicious vegan burger.' },
+    { name: 'Vegetarian Pizza', category: 'vegetarian', image: 'veg-pizza.jpg', description: 'A tasty vegetarian pizza.' },
+    { name: 'Beef Stew', category: 'meat', image: 'beef-stew.jpg', description: 'Hearty beef stew.' },
+    { name: 'Vegan Stir Fry', category: 'vegan', image: 'vegan-stir-fry.jpg', description: 'Vibrant vegan stir fry.' },
+    { name: 'Vegetarian Pasta', category: 'vegetarian', image: 'veg-pasta.jpg', description: 'Vegetarian pasta with pesto.' },
+  ];
+
+  // Filtered food list
+  filteredFoods = [...this.foods]; // Initially, show all foods
+
+  // Filter foods by category
+  filterFoods(category: string) {
+    if (category === 'meat') {
+      this.filteredFoods = this.foods.filter(food => food.category === 'meat');
+    } else if (category === 'vegan') {
+      this.filteredFoods = this.foods.filter(food => food.category === 'vegan');
+    } else if (category === 'vegetarian') {
+      this.filteredFoods = this.foods.filter(food => food.category === 'vegetarian');
+    } else {
+      this.filteredFoods = [...this.foods]; // Show all if no category selected
+    }
   }
 
   // Fetch suggested recipes
