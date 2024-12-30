@@ -3,17 +3,20 @@ import { HttpClient } from '@angular/common/http';
 import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
+// import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, FormsModule, HttpClientModule],
+  imports: [CommonModule, FormsModule, HttpClientModule, RouterModule],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
   userInp: string = '';
   result: any = null;
+  isLoggedIn: boolean = false;  // Tracks login state
   url: string = 'https://www.themealdb.com/api/json/v1/1/search.php?s=';
   randomRecipeUrl: string = 'https://www.themealdb.com/api/json/v1/1/random.php';
   filterUrl: string = 'https://www.themealdb.com/api/json/v1/1/filter.php?c=';
@@ -24,6 +27,7 @@ export class AppComponent {
   filteredFoods: any[] = [];
 
   constructor(private http: HttpClient) {}
+
 
   // Method to capture the input change
   onInputChange(event: Event): void {
@@ -139,7 +143,20 @@ export class AppComponent {
     }
   }
 
+   // logout method
+   logout(): void {
+    this.isLoggedIn = false;  
+    localStorage.removeItem('isLoggedIn');
+  }
+
   ngOnInit(): void {
+    const storedLoginState = localStorage.getItem('isLoggedIn');
+  if (storedLoginState) {
+    localStorage.setItem('isLoggedIn', 'false'); 
+    this.isLoggedIn = false;
+  } else if (storedLoginState === 'true') {
+    this.isLoggedIn = true;
+  }
     this.fetchSuggestedRecipes();
     this.fetchRandomRecipes();
   }

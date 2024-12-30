@@ -4,7 +4,7 @@
     padding: 20px;
 }
 
-/* Centered Search Box */
+
 .search-container {
     display: flex;
     justify-content: center;
@@ -36,7 +36,7 @@
     transform: scale(1.02);
 }
 
-/* Centering the Result Section */
+
 #result {
     display: flex;
     justify-content: center;
@@ -46,7 +46,7 @@
     position: relative; 
 }
 
-/* Centered Recipe Details */
+
 .recipe-details {
     max-width: 600px;
     border: 1px solid #ccc;
@@ -60,7 +60,7 @@
     margin-top: 20px;
 }
 
-/* Suggested Recipes Section */
+
 .suggested-recipes {
     margin-top: 30px;
     text-align: center;
@@ -172,7 +172,7 @@
     border-radius: 5px; 
 }
 
-/* Recipe Instructions Visibility */
+
 #recipe {
     display: none; /* Initially hidden */
     margin-top: 20px;
@@ -223,7 +223,7 @@
     background-color: #0056b3;
 }
 
-/* Filter Buttons */
+
 .filter-buttons {
     display: flex;
     justify-content: center;

@@ -1,3 +1,7 @@
+
+ 
+  <router-outlet></router-outlet>
+
 <div class="container">
   <div class="search-container">
     <input type="text" placeholder="Type A Dish Name Here.." [value]="userInp" (input)="onInputChange($event)" />
@@ -10,7 +14,7 @@
     <button (click)="filterFoods('Vegan')">Vegan</button>
     <button (click)="filterFoods('Vegetarian')">Vegetarian</button>
   </div>
-  
+
   <div class="filtered-meals">
     <div *ngFor="let meal of filteredFoods" class="recipe-card">
       <img [src]="meal.strMealThumb" alt="{{ meal.strMeal }}" />
@@ -18,15 +22,11 @@
     </div>
   </div>
 
-  <!-- Suggested Recipes Section -->
+  
   <div class="suggested-recipes" *ngIf="suggestedRecipes.length > 0">
     <h2>Suggested Recipes</h2>
     <div class="recipes-container">
-      <div
-        *ngFor="let recipe of suggestedRecipes"
-        class="recipe-card"
-        (click)="selectSuggestedRecipe(recipe)"
-      >
+      <div *ngFor="let recipe of suggestedRecipes" class="recipe-card" (click)="selectSuggestedRecipe(recipe)">
         <img [src]="recipe.strMealThumb" alt="{{ recipe.strMeal }}" />
         <h3>{{ recipe.strMeal }}</h3>
       </div>

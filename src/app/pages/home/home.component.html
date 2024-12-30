@@ -1,0 +1,10 @@
+<!-- logged in user -->
+<div *ngIf="isLoggedIn">
+  <p>Welcome, {{ currentUser }}!</p>
+  <button (click)="logout()">Logout</button>
+</div>
+
+<!-- not logged in -->
+<div *ngIf="!isLoggedIn">
+  <p>Please log in to continue.</p>
+</div>

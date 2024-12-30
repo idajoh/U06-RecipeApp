@@ -1,4 +1,4 @@
-/* General Page Styles */
+
 body {
     font-family: 'Arial', sans-serif;
     background-color: #f8f9fa;
@@ -13,7 +13,7 @@ body {
     padding: 20px;
 }
 
-/* Centered Search Box */
+
 .search-container {
     display: flex;
     justify-content: center;
