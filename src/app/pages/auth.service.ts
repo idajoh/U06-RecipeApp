@@ -12,26 +12,54 @@ export class AuthService {
 
   // Method to sign up a new user
   signup(email: string, password: string): boolean {
-    const users = JSON.parse(localStorage.getItem(this.usersKey) || '[]');  // Get existing users
-    if (users.some((user: { email: string }) => user.email === email)) {
-      return false;  // Return false if the email is already registered
+    let users: any[] = [];
+  
+    try {
+      const storedUsers = localStorage.getItem(this.usersKey);
+      const parsedUsers = JSON.parse(storedUsers || '[]');
+  
+      if (Array.isArray(parsedUsers)) {
+        users = parsedUsers;
+      } else {
+        console.warn('Users data in localStorage is not an array. Resetting.');
+      }
+    } catch (e) {
+      console.error('Failed to parse users from localStorage:', e);
     }
-    // Add the new user
+  
+    if (users.some((user: { email: string }) => user.email === email)) {
+      return false; // Email already exists
+    }
+  
     users.push({ email, password });
-    localStorage.setItem(this.usersKey, JSON.stringify(users));  // Save updated user list
+    localStorage.setItem(this.usersKey, JSON.stringify(users));
     return true;
   }
 
   // Method to login the user
   login(email: string, password: string): boolean {
-    const users = JSON.parse(localStorage.getItem(this.usersKey) || '[]');  // Get existing users
+    let users: any[] = [];
+  
+    try {
+      const storedUsers = localStorage.getItem(this.usersKey);
+      const parsedUsers = JSON.parse(storedUsers || '[]');
+  
+      if (Array.isArray(parsedUsers)) {
+        users = parsedUsers;
+      }
+    } catch (e) {
+      console.error('Failed to parse users from localStorage:', e);
+    }
+  
     const user = users.find(
       (user: { email: string; password: string }) => user.email === email && user.password === password
     );
+  
     if (user) {
-      localStorage.setItem(this.currentUserKey, JSON.stringify(user));  // Save the user in local storage
+      localStorage.setItem(this.currentUserKey, JSON.stringify(user));
       return true;
     }
+  
     return false;
   }
 
@@ -40,11 +68,29 @@ export class AuthService {
     return !!localStorage.getItem(this.currentUserKey);
   }
 
-  // Get the current user
+  /*/ Get the current user
   getCurrentUser(): string | null {
     const user = localStorage.getItem(this.currentUserKey);
     return user ? JSON.parse(user).email : null;
   }
+    */
+
+  getCurrentUser(): string | null {
+    const user = localStorage.getItem(this.currentUserKey);
+  
+    // Kontrollera att strängen verkligen är JSON
+    if (!user || user.trim()[0] !== '{') {
+      return null;
+    }
+  
+    try {
+      return JSON.parse(user).email;
+    } catch (e) {
+      console.error('Fel vid parsning av currentUser:', e);
+      return null;
+    }
+  }
+
 
   // Logout the user
   logout(): void {
